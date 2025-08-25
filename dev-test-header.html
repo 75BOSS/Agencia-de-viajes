@@ -1,0 +1,61 @@
+<!--
+  Este archivo HTML es solo para pruebas en local. Carga el componente de
+  navegación (header, overlay y menú móvil) utilizando los estilos y
+  javascript actuales del proyecto. No forma parte de la aplicación
+  final y puedes abrirlo directamente con el navegador para observar
+  el comportamiento del menú responsive sin necesidad de servidor PHP.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba Header - ToursEC</title>
+  <!-- Cargamos la hoja de estilos tal como se hace en el proyecto -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <!-- Fuente Inter desde Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Componente de navegación copiado de inc/header.php -->
+  <header class="site-header">
+    <div class="nav-wrap container">
+      <a class="brand" href="#">ToursEC</a>
+      <nav class="nav-desktop">
+        <a href="#">Inicio</a>
+        <a href="#">Destinos</a>
+        <a href="#tours">Tours</a>
+        <a href="#">Contacto</a>
+        <a class="admin-link" href="#">🔒 Admin</a>
+      </nav>
+      <button id="btnMenu" class="nav-burger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div id="overlay" class="overlay"></div>
+  <aside id="sheet" class="sheet" aria-hidden="true">
+    <div class="sheet-handle"></div>
+    <a href="#">INICIO</a>
+    <a href="#">DESTINOS</a>
+    <a href="#tours">TOURS</a>
+    <a href="#">CONTACTO</a>
+    <a href="#">ADMIN</a>
+    <button id="btnCloseSheet" class="sheet-close">✕</button>
+  </aside>
+
+  <!-- Simulamos contenido de página -->
+  <main class="container" style="padding-top: 80px">
+    <h1>Prueba de navegación</h1>
+    <p>Aquí puedes probar la interacción de la barra de navegación. Redimensiona la ventana del navegador y haz clic en el botón de menú para abrir el panel.</p>
+    <p>Este archivo sólo se utiliza para depurar el problema de la navegación móvil y no debería incluirse en producción.</p>
+  </main>
+
+  <!-- Cargamos el JS del menú móvil al final del body -->
+  <script src="assets/js/menu.js"></script>
+</body>
+</html>
