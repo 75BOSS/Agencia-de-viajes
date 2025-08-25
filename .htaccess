@@ -6,12 +6,18 @@
 
 # URLs amigables
 RewriteEngine On
+RewriteBase /
 
 # Redirigir tour/slug a tour.php?slug=slug
 RewriteRule ^tour/([^/]+)/?$ tour.php?slug=$1 [L,QSA]
 
 # Redirigir destino/slug a destino.php?slug=slug (si se implementa)
 RewriteRule ^destino/([^/]+)/?$ destino.php?slug=$1 [L,QSA]
+
+# Si el archivo o directorio no existe, redirige a index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
 
 # Proteger archivos de configuración
 <Files "*.sql">
@@ -58,3 +64,12 @@ RewriteRule ^destino/([^/]+)/?$ destino.php?slug=$1 [L,QSA]
 
 # Página de error personalizada (opcional)
 ErrorDocument 404 /404.php
+
+# Forzar UTF-8
+AddDefaultCharset UTF-8
+
+# Permitir acceso a assets
+<FilesMatch "\.(css|js|jpg|jpeg|png|gif|ico)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>

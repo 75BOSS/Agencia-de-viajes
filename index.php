@@ -99,37 +99,26 @@ $stats = $pdo->query($stats_sql)->fetch();
                 Aventuras únicas entre volcanes, selvas y paisajes que te robarán el aliento
             </p>
             
-            <!-- Search Form -->
-            <form id="search-form" class="hero-search reveal-text delay-2">
-                <div style="display: flex; max-width: 500px; margin: 0 auto; gap: 1rem;">
-                    <input 
-                        type="text" 
-                        id="search-tours" 
-                        name="search"
-                        value="<?= e($search) ?>"
-                        placeholder="¿A dónde quieres ir? (Baños, Quilotoa, Mindo...)"
-                        class="form-input"
-                        style="flex: 1; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);"
-                    >
-                    <button type="submit" class="btn btn-primary btn-micro magnetic">
-                        Buscar
-                    </button>
-                </div>
+            <!-- Formulario de búsqueda -->
+            <form action="/" method="GET" class="hero-search reveal-text delay-2">
+                <input type="search" name="search" placeholder="Buscar destinos o tours..." 
+                       value="<?= e($search) ?>" required>
+                <button type="submit">Buscar</button>
             </form>
-            
-            <!-- Stats -->
-            <div class="hero-stats reveal-text delay-3" style="margin-top: 2rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
-                <div class="stat-item floating" style="text-align: center; color: white; animation-delay: 0s;">
-                    <div class="counter" data-target="<?= $stats['total_destinations'] ?>" style="font-size: 2.5rem; font-weight: 800;">0</div>
-                    <div style="opacity: 0.9;">Destinos Únicos</div>
+
+            <!-- Estadísticas -->
+            <div class="hero-stats reveal-text delay-3">
+                <div class="stat-item">
+                    <span class="stat-number"><?= $stats['total_destinations'] ?></span>
+                    <span class="stat-label">Destinos</span>
                 </div>
-                <div class="stat-item floating" style="text-align: center; color: white; animation-delay: 0.5s;">
-                    <div class="counter" data-target="<?= $stats['total_tours'] ?>" style="font-size: 2.5rem; font-weight: 800;">0</div>
-                    <div style="opacity: 0.9;">Tours Disponibles</div>
+                <div class="stat-item">
+                    <span class="stat-number"><?= $stats['total_tours'] ?></span>
+                    <span class="stat-label">Tours</span>
                 </div>
-                <div class="stat-item floating" style="text-align: center; color: white; animation-delay: 1s;">
-                    <div class="counter" data-target="<?= $stats['total_bookings'] ?>" style="font-size: 2.5rem; font-weight: 800;">0</div>
-                    <div style="opacity: 0.9;">Viajeros Felices</div>
+                <div class="stat-item">
+                    <span class="stat-number"><?= $stats['total_bookings'] ?></span>
+                    <span class="stat-label">Reservas</span>
                 </div>
             </div>
         </div>
@@ -171,46 +160,12 @@ $stats = $pdo->query($stats_sql)->fetch();
             
             <div class="grid grid-3">
                 <?php foreach ($destinations as $destination): ?>
-                    <div class="card card-hover animate-on-scroll image-reveal">
-                        <?php if ($destination['image_url']): ?>
-                            <img src="<?= e($destination['image_url']) ?>" 
-                                 alt="<?= e($destination['name']) ?>" 
-                                 class="card-image">
-                        <?php endif; ?>
-                        
+                    <div class="card">
+                        <img src="<?= e($destination['image_url']) ?>" alt="<?= e($destination['name']) ?>">
                         <div class="card-content">
-                            <div class="card-subtitle">
-                                <?= e($destination['province']) ?>
-                                <?php if ($destination['category_name']): ?>
-                                    <span class="badge badge-secondary"><?= e($destination['category_name']) ?></span>
-                                <?php endif; ?>
-                            </div>
-                            
-                            <h3 class="card-title"><?= e($destination['name']) ?></h3>
-                            
-                            <p class="text-muted mb-3">
-                                <?= e(truncate($destination['short_desc'], 120)) ?>
-                            </p>
-                            
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <a href="/destino/<?= e($destination['slug']) ?>" class="btn btn-primary btn-small btn-micro magnetic">
-                                    Ver Destino
-                                </a>
-                                
-                                <?php 
-                                // Contar tours disponibles para este destino
-                                $tours_count_sql = "SELECT COUNT(*) as count FROM tours WHERE destination_id = ? AND is_active = 1";
-                                $stmt_count = $pdo->prepare($tours_count_sql);
-                                $stmt_count->execute([$destination['id']]);
-                                $tours_count = $stmt_count->fetch()['count'];
-                                ?>
-                                
-                                <?php if ($tours_count > 0): ?>
-                                    <span class="text-muted" style="font-size: 0.875rem;">
-                                        <?= $tours_count ?> tour<?= $tours_count > 1 ? 's' : '' ?>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
+                            <h3><?= e($destination['name']) ?></h3>
+                            <p><?= e($destination['short_desc']) ?></p>
+                            <a href="/destino/<?= e($destination['slug']) ?>" class="btn">Ver más</a>
                         </div>
                     </div>
                 <?php endforeach; ?>

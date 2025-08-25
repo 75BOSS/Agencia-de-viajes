@@ -22,6 +22,7 @@ try {
             PDO::ATTR_EMULATE_PREPARES => false
         ]
     );
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Error de conexión: " . $e->getMessage());
 }
@@ -104,3 +105,24 @@ CREATE TABLE IF NOT EXISTS reservations (
 
 $pdo->exec($sql);
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+    <?php include 'inc/header.php'; ?>
+
+    <main>
+        <!-- Contenido principal -->
+    </main>
+
+    <?php include 'inc/footer.php'; ?>
+
+    <script src="/assets/js/app.js"></script>
+</body>
+</html>
