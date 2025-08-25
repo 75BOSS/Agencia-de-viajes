@@ -10,6 +10,7 @@ if (session_status()===PHP_SESSION_NONE) session_start(); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($page_title) ? $page_title : 'ToursEC - Descubre Ecuador' ?></title>
     <meta name="description" content="<?= isset($page_description) ? $page_description : 'Descubre los destinos más increíbles del Ecuador con ToursEC' ?>">
+    <base href="/" />
     <!--
       Utilizamos una ruta absoluta para el CSS para asegurar que
       los estilos se carguen correctamente sin importar la profundidad
