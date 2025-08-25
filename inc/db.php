@@ -3,7 +3,9 @@
  * Configuración de conexión a base de datos
  * Credenciales para Hostinger
  */
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $host = 'localhost';
 $dbname = 'u240362798_ToursEc';
 $username = 'u240362798_ToursEc13';
