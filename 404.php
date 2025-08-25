@@ -1,7 +1,6 @@
 <?php
 /**
  * Página 404 - No encontrado
- *
  * Se emite un código de estado 404 y luego se carga el header y el footer
  * del sistema para mantener el diseño consistente en toda la web. El
  * contenido central muestra un mensaje informando que la página no se

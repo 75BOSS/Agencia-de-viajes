@@ -7,15 +7,15 @@
 require_once 'inc/db.php';
 require_once 'inc/helpers.php';
 
+// Parámetros de búsqueda
+$search = $_GET['search'] ?? '';
+$limit = 6;
+
 // Variables para el header
 $page_title = $search ? "Búsqueda: " . e($search) . " - ToursEC" : "ToursEC - Descubre la magia del Ecuador";
 $page_description = "Descubre los destinos más increíbles del Ecuador. Tours, campings y aventuras únicas en Baños, Quilotoa, Mindo y más.";
 
 require __DIR__."/inc/header.php";
-
-// Parámetros de búsqueda
-$search = $_GET['search'] ?? '';
-$limit = 6;
 
 // Obtener destinos recientes
 $sql_destinations = "
